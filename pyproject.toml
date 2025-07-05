@@ -1,0 +1,41 @@
+[tool.poetry]
+name = "tictactoe"
+version = "0.1.0"
+description = "Interactive actor-critic, PPO agent for custom tic-tac-toe game."
+authors = ["Artem Gorodetskii"]
+readme = "README.md"
+packages = [
+    { include = "tictactoe", from = "src" }
+]
+
+[tool.poetry.dependencies]
+python = ">=3.12,<4.0"
+fastapi = "^0.115.14"
+uvicorn = "^0.22.0"
+torch = "^2.7.1"
+numpy = "^2.3.0"
+
+[tool.poetry.group.dev.dependencies]
+ruff = "^0.12.1"
+pytest = "^8.4.1"
+coverage = "^7.9.1"
+httpx = "^0.28.1"
+
+[tool.ruff]
+line-length = 88
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["D", "E", "F", "B", "I", "ANN"]
+extend-ignore = ["D100", "D107", "D104"]
+
+[tool.ruff.format]
+quote-style = "double"
+docstring-code-format = true
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"
+
+[build-system]
+requires = ["poetry-core>=1.5.0"]
+build-backend = "poetry.core.masonry.api"
