@@ -16,22 +16,22 @@ class Config:
     free_cell_val: int = 0  # Value representing an empty cell.
     opponent_player: int = 1  # Player ID for the opponent.
     agent_player: int = 2  # Player ID for the agent.
-    history_size: int = 3  # Size of the move history.
+    history_size: int = 5  # Size of the move history.
 
     # Model.
     num_states: int = 3  # Number of possible cell states.
     input_dim: int = 9  # Total number of cells in the board.
-    actor_hid_dim: int = 32  # Hidden dimension for actor network.
-    actor_fwd_dim: int = 32  # Feedforward dimension in actor transformer.
+    actor_hid_dim: int = 64  # Hidden dimension for actor network.
+    actor_fwd_dim: int = 128  # Feedforward dimension in actor transformer.
     actor_nheads: int = 1  # Number of attention heads in actor.
-    actor_nlayers: int = 4  # Number of transformer layers in actor.
+    actor_nlayers: int = 2  # Number of transformer layers in actor.
     critic_hid_dim: int = 64  # Hidden dimension for critic network.
     critic_fwd_dim: int = 128  # Feedforward dimension in critic transformer.
     critic_nheads: int = 1  # Number of attention heads in critic.
-    critic_nlayers: int = 4  # Number of transformer layers in critic.
+    critic_nlayers: int = 2  # Number of transformer layers in critic.
 
     # PPO Agent.
-    gamma: float = 0.99  # Discount factor.
+    gamma: float = 0.98  # Discount factor.
     use_gae: bool = True  # Whether to use Generalized Advantage Estimation.
     normalize_rewards: bool = False  # Whether to normalize rewards.
     normalize_advantages: bool = False  # Whether to normalize advantages.
@@ -39,20 +39,20 @@ class Config:
     lam: float = 0.95  # GAE lambda parameter.
     clip_eps: float = 0.1  # PPO clip epsilon.
     value_loss_coef: float = 1.0  # Coefficient for value loss term.
-    old_policy_update_interval: int = 10  # Steps before syncing old and new policies.
+    old_policy_update_interval: int = 100  # Steps before syncing old and new policies.
 
     # Optimization.
     actor_lr: float = 1e-4  # Learning rate for actor.
-    actor_weight_decay: float = 0.0  # Weight decay for actor.
+    actor_weight_decay: float = 1e-6  # Weight decay for actor.
     actor_opt_eps: float = 1e-5  # Optimizer epsilon for actor.
     actor_opt_betas: Tuple[float, float] = (0.9, 0.99)  # Betas for actor optimizer.
     actor_clip_grad_norm: Optional[float] = None  # Max norm for actor gradients.
     critic_lr: float = 1e-4  # Learning rate for critic.
-    critic_weight_decay: float = 0.0  # Weight decay for critic.
+    critic_weight_decay: float = 1e-6  # Weight decay for critic.
     critic_opt_eps: float = 1e-5  # Optimizer epsilon for critic.
     critic_opt_betas: Tuple[float, float] = (0.9, 0.99)  # Betas for critic optimizer.
     critic_clip_grad_norm: Optional[float] = None  # Max norm for critic gradients.
-    grad_accum_steps: int = 1  # Number of gradient accumulation steps.
+    grad_accum_steps: int = 8  # Number of gradient accumulation steps.
     # Layer name markers to exclude from weight decay.
     weight_decay_blacklist: List[str] = field(
         default_factory=lambda: [
