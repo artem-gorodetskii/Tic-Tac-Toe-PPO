@@ -1,0 +1,23 @@
+{
+  "name": "TicTacToe Agent Dev",
+  "build": {
+    "dockerfile": "Dockerfile"
+  },
+  "customizations":{
+    "vscode": {
+      "settings": {
+        "terminal.integrated.defaultProfile.linux": "bash",
+        "python.defaultInterpreterPath": "/home/vscode/.local/bin/poetry"
+      },
+      "extensions": [
+        "ms-python.python",
+        "ms-python.vscode-pylance"
+      ]
+    }
+  },
+  "postCreateCommand": "poetry install --only main,dev",
+  "remoteUser": "vscode",
+  "forwardPorts": [8000],
+  "mounts": []
+}
+  
